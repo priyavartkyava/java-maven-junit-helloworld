@@ -13,7 +13,6 @@ This example demonstrates:
 * A Maven build that puts it all together
 
 Running the tests
-
 -----------------
 
 * To run the unit tests, call `mvn test`
