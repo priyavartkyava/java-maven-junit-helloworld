@@ -10,6 +10,7 @@ pipeline
             defaultValue: false,
             description: '',
             name: 'FORCE_FULL_BUILD')
+    }
     environment 
     {
        GIT_BRANCH = 'master'
