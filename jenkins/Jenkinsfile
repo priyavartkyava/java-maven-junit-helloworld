@@ -1,6 +1,10 @@
 pipeline
 {
     agent 'any'
+    environment 
+    {
+       GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+    }
     tools
     {
       maven 'm3'
