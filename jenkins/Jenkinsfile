@@ -7,19 +7,15 @@ pipeline
         {
             steps 
             {
-                mvn compile 
-                        
+               sh 'mvn compile'
             }
-         
         }
         stage('Package')
         {
             steps
             {
-                mvn package
+             sh  'mvn package'
             }
         }
-        
     }    
-
 }
