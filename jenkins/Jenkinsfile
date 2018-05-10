@@ -1,0 +1,25 @@
+pipeline
+{
+    agent 'any'
+    stages
+    {
+        stage ('Compile')
+        {
+            steps 
+            {
+                mvn compile 
+                        
+            }
+         
+        }
+        stage('Package')
+        {
+            steps
+            {
+                mvn package
+            }
+        }
+        
+    }    
+
+}
