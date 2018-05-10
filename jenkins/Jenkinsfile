@@ -1,6 +1,15 @@
 pipeline
 {
     agent 'any'
+    parameters
+    {
+        string (
+          defaultValue: '*'
+          name: 'BRANCH_NAME')
+        booleanParam ( 
+            defaultValue: false,
+            description: '',
+            name: 'FORCE_FULL_BUILD')
     environment 
     {
        GIT_BRANCH = 'master'
@@ -27,9 +36,6 @@ pipeline
         }
        stage('archive')
         {
-            when {
-                branch '/*master'
-            }
             steps
             {
                 archiveArtifacts 'target/*.jar'
