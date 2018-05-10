@@ -30,6 +30,7 @@ pipeline
             when {
                 GIT_BRANCH == 'master'
             }
+            steps
             {
                 archiveArtifacts 'target/*.jar'
             }
