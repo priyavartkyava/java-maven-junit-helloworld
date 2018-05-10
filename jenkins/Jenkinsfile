@@ -3,7 +3,7 @@ pipeline
     agent 'any'
     environment 
     {
-       GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+       GIT_BRANCH = 'master'
     }
     tools
     {
@@ -27,7 +27,9 @@ pipeline
         }
        stage('archive')
         {
-            steps
+            when {
+                GIT_BRANCH == 'master'
+            }
             {
                 archiveArtifacts 'target/*.jar'
             }
