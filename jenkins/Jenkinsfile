@@ -28,7 +28,7 @@ pipeline
        stage('archive')
         {
             when {
-                GIT_BRANCH == 'master'
+                branch '/*master'
             }
             steps
             {
