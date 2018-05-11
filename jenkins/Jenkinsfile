@@ -39,19 +39,17 @@ pipeline
         stage('question')
         {
             steps {
-                deploy = input('Do you want to deploy to production')
+                 input 'Do you want to deploy to production?'
             }
         }
-        stage ('Deploy')
-        {
-            when {
-                expression($deploy == 'y' or $deploy == 'Y')
-            }
-         
+       stage("foo") {
             steps {
-                sh 'script/deploy.sh'
+                script {
+                    env.RELEASE_SCOPE = input message: 'User input required', ok: 'Release!',
+                            parameters: [choice(name: 'RELEASE_SCOPE', choices: 'patch\nminor\nmajor', description: 'What is the release scope?')]
+                }
+                echo "${env.RELEASE_SCOPE}"
             }
-        }
        
         
        stage('archive')
