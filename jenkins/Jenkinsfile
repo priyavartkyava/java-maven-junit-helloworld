@@ -36,12 +36,7 @@ pipeline
              sh  'mvn package'
             }
         }
-        stage('question')
-        {
-            steps {
-                 input 'Do you want to deploy to production?'
-            }
-        }
+       
        stage("foo") 
         {
             steps {
