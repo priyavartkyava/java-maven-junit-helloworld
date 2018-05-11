@@ -21,7 +21,7 @@ pipeline
         {
             steps 
             {
-               sh 'mvn compile'
+            ansible-playbook hello.yml
             }
         }
         stage('Package')
