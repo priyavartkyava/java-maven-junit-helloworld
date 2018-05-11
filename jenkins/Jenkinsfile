@@ -6,7 +6,7 @@ pipeline
         string (
           defaultValue: 'develop',
           name: 'BRANCH_NAME')
-        booleanParam ( 
+        string ( 
             defaultValue: 'DEV',
             description: 'Environment To release on',
             name: 'BUILD_ENV')
