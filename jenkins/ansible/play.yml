@@ -1,6 +1,6 @@
 ---
-hosts: '{{target_hosts}}'
-tasks:
+- hosts: '{{target_hosts}}'
+  tasks:
   - name: 'print os version'
     debug:
       msg: '{{ ansible_distribution }}'
