@@ -29,7 +29,7 @@ pipeline
         {
             steps 
             {
-              ansiblePlaybook(credentialsId: 'devops', inventory: '34.218.51.237,' , playbook: 'scripts/ansible/play.yml', extras: '-e target_hosts="34.218.51.237"')
+              ansiblePlaybook(credentialsId: 'devops', inventory: '34.218.51.237,' , playbook: 'ansible/play.yml', extras: '-e target_hosts="34.218.51.237"')
             }
         }
         stage('Package')
