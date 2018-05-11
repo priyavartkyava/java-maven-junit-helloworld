@@ -21,7 +21,7 @@ pipeline
         {
             steps 
             {
-             ansiblePlaybook(credntialsId: 'my-ssh-key', inventory: '34.218.51.237,' playbook: 'scripts/my_plabook.yml'
+              ansiblePlaybook(credntialsId: 'my-ssh-key', inventory: '34.218.51.237,' playbook: 'scripts/my_plabook.yml')
             }
         }
         stage('Package')
