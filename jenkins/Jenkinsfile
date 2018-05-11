@@ -14,6 +14,7 @@ pipeline
     environment 
     {
        GIT_BRANCH = 'master'
+        ENV = 'NonProd'
     }
     tools
     {
@@ -35,6 +36,24 @@ pipeline
              sh  'mvn package'
             }
         }
+        stage('question')
+        {
+            steps {
+                deploy = input('Do you want to deploy to production')
+            }
+        }
+        stage ('Deploy')
+        {
+            when {
+                expression($deploy == 'y' or $deploy == 'Y')
+            }
+         
+            steps {
+                sh 'script/deploy.sh'
+            }
+        }
+       
+        
        stage('archive')
         {
             steps
