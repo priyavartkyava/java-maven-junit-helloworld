@@ -7,14 +7,9 @@ pipeline
           defaultValue: 'develop',
           name: 'BRANCH_NAME')
         booleanParam ( 
-            defaultValue: false,
-            description: '',
-            name: 'FORCE_FULL_BUILD')
-    }
-    environment 
-    {
-       GIT_BRANCH = 'master'
-        ENV = 'NonProd'
+            defaultValue: DEV,
+            description: 'Environment To release on',
+            name: 'BUILD_ENV')
     }
     tools
     {
@@ -40,11 +35,13 @@ pipeline
        stage("foo") 
         {
             steps {
+                sh "echo $BRANCH_NAME"
+                sh "echo $BUILD_ENV"
                 script {
                     env.RELEASE_SCOPE = input message: 'User input required', ok: 'Release!',
                             parameters: [choice(name: 'RELEASE_SCOPE', choices: 'patch\nminor\nmajor', description: 'What is the release scope?')]
                       }
-                echo "${env.RELEASE_SCOPE}"
+                
             }
         }
         
