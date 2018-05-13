@@ -22,7 +22,7 @@ pipeline
             steps 
             {
               sh 'pwd'  
-              ansiblePlaybook(credentialsId: 'pipeline_key', inventory: '34.218.51.237,' , playbook: 'jenkins/ansible/play.yml', extras: '-e target_hosts="34.218.51.237"')
+              ansiblePlaybook(credentialsId: 'pipeline_key', inventory: '34.214.208.51,' , playbook: 'jenkins/ansible/play.yml', extras: '-e target_hosts="34.214.208.51"')
             }
         }
         stage('Package')
