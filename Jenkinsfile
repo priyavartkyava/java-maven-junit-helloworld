@@ -17,15 +17,7 @@ pipeline
     }
     stages
     {
-        stage('Checkout')
-        {
-            steps 
-            {
-                git credentialsId: 'f6aa54db-28dc-4848-9842-c0c823d176cd', url: 'https://github.com/priyavartkyava/java-maven-junit-helloworld.git'
-
-            }
-        }
-        stage ('Compile')
+     stage ('Compile')
         {
             steps 
             {
