@@ -8,6 +8,7 @@ try
    def workspace = pwd()
    println("the workspace is "  + ${workspace})
 }
+}
    catch (exception)
    {
       err = caughtError
