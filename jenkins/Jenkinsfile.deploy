@@ -32,9 +32,8 @@ try
    finally 
  {
         def mail_to = 'priyavartk@gmail.com'
-        currentBuild.result !='ABORTED' && node("master"){
-        step([$class: 'Mailer',notifyEveryUnstableBuild: true, recipients: "${mail_to}",
-        sendToIndividuals: true])
+        (currentBuild.result !='ABORTED') && node("master"){
+        step([$class: 'Mailer',notifyEveryUnstableBuild: true, recipients: "${mail_to}",sendToIndividuals: true])
  }
  
  }
