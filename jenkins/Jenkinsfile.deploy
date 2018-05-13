@@ -7,26 +7,27 @@ try
    println("The build url is"+ ${env.BUILD_URL})
    def workspace = pwd()
    println("the workspace is "  + ${workspace})
-}
-}
-   catch (exception)
-   {
+   }
+ }
+ catch (exception)
+ {
       err = caughtError
       currentBuild.result = "Failure"
       String recipient = 'priyavartk@gmail.com'
       mail subject: '${env.JOB_NAME} ${env.BUILD_NUMBER} failed", body: "It appears job has failed", to: receipient}'
-   }
+ }
    finally 
-       {
+ {
+        def mail_to = 'priyavartk@gmail.com'
         currentBuild.result !='ABORTED' && node("master"){
         step([$class: 'Mailer',notifyEveryUnstableBuild: true, recipients: "${email_to}",
         sendToIndividuals: true])
-       }
+ }
  
  // Must re-throw exception to propagate error:
  if (err) 
     {
      throw err
      }
-      }
+ 
  
