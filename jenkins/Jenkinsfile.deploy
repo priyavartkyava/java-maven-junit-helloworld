@@ -8,3 +8,4 @@ try
    def workspace = pwd()
    println("the workspace is "  + ${workspace})
 }
+}
