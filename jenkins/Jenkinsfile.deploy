@@ -1,0 +1,10 @@
+#!/usr/bin/groovy
+try
+{
+   node 
+   {
+   stage 'Build Step1'
+   println("The build url is"+ ${env.BUILD_URL})
+   def workspace = pwd()
+   println("the workspace is "  + ${workspace})
+}
