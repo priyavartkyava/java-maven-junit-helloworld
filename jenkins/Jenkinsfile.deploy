@@ -1,4 +1,17 @@
-#!/usr/bin/groovy
+#!/usr/bin/env groovy
+ 
+/**
+        * Sample Jenkinsfile for Jenkins2 Pipeline
+        * from https://github.com/hotwilson/jenkins2/edit/master/Jenkinsfile
+        * by wilsonmar@gmail.com 
+ */
+ 
+import hudson.model.*
+import hudson.EnvVars
+import groovy.json.JsonSlurperClassic
+import groovy.json.JsonBuilder
+import groovy.json.JsonOutput
+import java.net.URL
 try
 {
    node 
@@ -20,7 +33,7 @@ try
  {
         def mail_to = 'priyavartk@gmail.com'
         currentBuild.result !='ABORTED' && node("master"){
-        step([$class: 'Mailer',notifyEveryUnstableBuild: true, recipients: "${email_to}",
+        step([$class: 'Mailer',notifyEveryUnstableBuild: true, recipients: "${mail_to}",
         sendToIndividuals: true])
  }
  
