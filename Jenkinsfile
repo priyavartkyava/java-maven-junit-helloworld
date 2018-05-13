@@ -1,16 +1,7 @@
 pipeline
 {
     agent 'any'
-    parameters
-    {
-        string (
-          defaultValue: 'develop',
-          name: 'BRANCH_NAME')
-        string ( 
-            defaultValue: 'DEV',
-            description: 'Environment To release on',
-            name: 'BUILD_ENV')
-    }
+    
     tools
     {
       maven 'm3'
@@ -21,7 +12,7 @@ pipeline
         {
             steps 
             {
-                sh "echo $env.BRANCH_NAME"
+                sh "echo Current branch is $env.BRANCH_NAME"
 
             }
         }
