@@ -10,6 +10,14 @@ pipeline
     tools { maven 'm3' }
     stages
     {
+        stage("print params") 
+        {
+            steps {
+                    echo "flag: ${params.userFlag}"
+                    echo "${env.userFlag}"
+                    echo "${userFlag}"
+            }
+        }
        stage ('Checkout')
         {
             steps 
