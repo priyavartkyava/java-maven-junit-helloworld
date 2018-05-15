@@ -3,25 +3,18 @@ pipeline
     agent 'any'
     parameters
     {
-        string (
-          defaultValue: 'develop',
-          name: 'BRANCH_NAME')
-        string ( 
-            defaultValue: 'STAGE',
-            description: 'Environment To release on',
-            name: 'BUILD_ENV')
+        string (defaultValue: 'develop',name: 'BRANCH_NAME')
+        string (defaultValue: 'STAGE',description: 'Environment To release on',name: 'BUILD_ENV')
+        booleanParam(defaultValue: true, description: '', name: 'userFlag')
     }
-    tools
-    {
-      maven 'm3'
-    }
+    tools { maven 'm3' }
     stages
     {
-       
-        stage ('Compile')
+       stage ('Checkout')
         {
             steps 
             {
+              checkout scm  
               sh 'pwd'  
               ansiblePlaybook(credentialsId: 'pipeline_key', inventory: '52.221.195.203,' , playbook: 'jenkins/ansible/play.yml', extras: '-e target_hosts="52.221.195.203"')
               script {
@@ -32,25 +25,16 @@ pipeline
               }
             }
         }
-        stage('Package')
+      stage('Package')
         {
             steps
             {
              sh  'mvn package'
             }
         }
-              stage("foo") 
+      stage('archive')
         {
-            steps {
-                sh 'printenv'
-               
-                
-            }
-        }
-        
-       stage('archive')
-        {
-            steps
+        steps
             {
                 archiveArtifacts 'target/*.jar'
                 deleteDir()
