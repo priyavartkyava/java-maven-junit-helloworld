@@ -38,7 +38,9 @@ stage('Config')  { steps {ansiblePlaybook(credentialsId: 'pipeline_key', invento
 stage('Compile') { steps { sh  'mvn compile' }}
 stage('Test')    { steps { sh  'mvn test' }}
 stage('Package') { steps { sh  'mvn package'}}
-stage('archive') { steps { archiveArtifacts 'target/*.jar'   deleteDir() }}
+stage('archive') { steps { archiveArtifacts 'target/*.jar'   
+                          deleteDir() }
+                  }
 stage("Deploy")  { steps { script { build job: 'speak-it', parameters: [string(name: 'REQUESTED_ACTION', value: 'greeting')] }   }}
 }    
 }
