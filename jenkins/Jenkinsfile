@@ -51,13 +51,6 @@ pipeline
                 deleteDir()
             }
         }
-stage("build") 
-   {
-     steps {
-        script {
-        build(job: "speak-it",parameters:[string(name: 'Nodes', value: "${params.Nodes}"),string(name: 'Versions', value: "${params.Versions}"),string(name: 'Path', value: "${params.Path}")])
-              }
-         }
-    }  
+
     }    
 }
