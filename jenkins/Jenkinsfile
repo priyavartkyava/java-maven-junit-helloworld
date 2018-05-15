@@ -73,7 +73,7 @@ pipeline
         {
             steps {
                 script {
-                        build(job: "speak-it",parameters:[string(name: 'REQUESTED_ACTION', value: "greetings")])
+                        build job: 'speak-it', parameters: [string(name: 'REQUESTED_ACTION', value: 'greeting')]
                      }
                   }
         }
