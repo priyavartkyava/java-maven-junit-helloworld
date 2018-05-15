@@ -26,7 +26,7 @@ pipeline
             steps 
             {
               checkout scm  
-              sh 'pwd'  
+                
               ansiblePlaybook(credentialsId: 'pipeline_key', inventory: '52.221.195.203,' , playbook: 'jenkins/ansible/play.yml', extras: '-e target_hosts="52.221.195.203"')
               script {
                     def browsers = ['chrome', 'firefox']
