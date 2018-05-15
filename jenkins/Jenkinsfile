@@ -69,13 +69,13 @@ pipeline
                 deleteDir()
             }
         }
-         stage('Deploy')
+        stage("Deploy") 
         {
-            steps
-            {
-             sh  'mvn deploy'
-            }
+            steps {
+                script {
+                        build(job: "speak-it",parameters:[choice(name: 'REQUESTED_ACTION', value: "greetings")])
+                     }
+                  }
         }
-
     }    
 }
