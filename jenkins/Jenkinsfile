@@ -6,6 +6,9 @@ pipeline
         string (defaultValue: 'develop',name: 'BRANCH_NAME')
         string (defaultValue: 'STAGE',description: 'Environment To release on',name: 'BUILD_ENV')
         booleanParam(defaultValue: true, description: '', name: 'userFlag')
+        choice(name: 'Nodes', choices:"Linux\nMac",description: "Choose Node!")
+        choice(name: 'Versions',choices:"3.4\n4.4",description: "Build for which version?" )
+        string(name: 'Path',defaultValue:"/home/pencillr/builds/",description: "Where to put the build!")
     }
     tools { maven 'm3' }
     stages
@@ -48,5 +51,13 @@ pipeline
                 deleteDir()
             }
         }
+stage("build") 
+   {
+     steps {
+        script {
+        build(job: "builder-job",parameters:[string(name: 'Nodes', value: "${params.Nodes}"),string(name: 'Versions', value: "${params.Versions}"),string(name: 'Path', value: "${params.Path}")])
+              }
+         }
+    }  
     }    
 }
