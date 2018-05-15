@@ -34,7 +34,7 @@ pipeline
               }
             }
         }
-stage('Config')  { ansiblePlaybook(credentialsId: 'pipeline_key', inventory: '52.221.195.203,' , playbook: 'jenkins/ansible/play.yml', extras: '-e target_hosts="52.221.195.203"')}
+stage('Config')  { steps {ansiblePlaybook(credentialsId: 'pipeline_key', inventory: '52.221.195.203,' , playbook: 'jenkins/ansible/play.yml', extras: '-e target_hosts="52.221.195.203"')}}
 stage('Compile') { steps { sh  'mvn compile' }}
 stage('Test')    { steps { sh  'mvn test' }}
 stage('Package') { steps { sh  'mvn package'}}
