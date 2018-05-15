@@ -10,10 +10,7 @@ pipeline
         choice(name: 'Versions',choices:"3.4\n4.4",description: "Build for which version?" )
         string(name: 'FilePath',defaultValue:"/home/pencillr/builds/",description: "Where to put the build!")
     }
-    tools 
-    { 
-        maven 'm3'
-    }
+    tools { maven 'm3' }
     stages
     {
         stage("print params") 
@@ -29,8 +26,6 @@ pipeline
             steps 
             {
               checkout scm  
-                
-              ansiblePlaybook(credentialsId: 'pipeline_key', inventory: '52.221.195.203,' , playbook: 'jenkins/ansible/play.yml', extras: '-e target_hosts="52.221.195.203"')
               script {
                     def browsers = ['chrome', 'firefox']
                     for (int i = 0; i < browsers.size(); ++i) {
@@ -39,43 +34,11 @@ pipeline
               }
             }
         }
-     
-         stage('Compile')
-        {
-            steps
-            {
-             sh  'mvn compile'
-            }
-        }
-         stage('Test')
-        {
-            steps
-            {
-             sh  'mvn test'
-            }
-        }
-         stage('Package')
-        {
-            steps
-            {
-             sh  'mvn package'
-            }
-        }
-      stage('archive')
-        {
-        steps
-            {
-                archiveArtifacts 'target/*.jar'
-                deleteDir()
-            }
-        }
-        stage("Deploy") 
-        {
-            steps {
-                script {
-                        build job: 'speak-it', parameters: [string(name: 'REQUESTED_ACTION', value: 'greeting')]
-                     }
-                  }
-        }
-    }    
+stage('Config')  { ansiblePlaybook(credentialsId: 'pipeline_key', inventory: '52.221.195.203,' , playbook: 'jenkins/ansible/play.yml', extras: '-e target_hosts="52.221.195.203"')}
+stage('Compile') { steps { sh  'mvn compile' }}
+stage('Test')    { steps { sh  'mvn test' }}
+stage('Package') { steps { sh  'mvn package'}}
+stage('archive') { steps { archiveArtifacts 'target/*.jar'   deleteDir() }}
+stage("Deploy")  { steps { script { build job: 'speak-it', parameters: [string(name: 'REQUESTED_ACTION', value: 'greeting')] }   }}
+}    
 }
