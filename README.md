@@ -5,6 +5,10 @@ A „Hello World!” sample written in Java using Maven for the build, that show
 
 This example demonstrates:
 
+
+
+
+
 * Unit tests written with [JUnit 4](http://junit.org/)
 * Unit test using [PowerMockito](https://code.google.com/p/powermock/) to mock classes and test `System.exit()`
 * Integration tests written with [JUnit 4](http://junit.org/)
