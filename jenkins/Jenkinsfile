@@ -7,7 +7,7 @@ pipeline
           defaultValue: 'develop',
           name: 'BRANCH_NAME')
         string ( 
-            defaultValue: 'DEV',
+            defaultValue: 'STAGE',
             description: 'Environment To release on',
             name: 'BUILD_ENV')
     }
